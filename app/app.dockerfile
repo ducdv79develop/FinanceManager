@@ -1,6 +1,6 @@
 # app.dockerfile
 # build react app
-FROM node:lts AS development
+FROM node:18.1 AS development
 # Set working directory
 WORKDIR /docker-containers
 #

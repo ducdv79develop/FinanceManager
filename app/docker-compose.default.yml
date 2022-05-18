@@ -2,22 +2,22 @@
 version: '1'
 
 networks:
-    proxy:
-        external:
-            name: common_proxy
+  proxy:
+    external:
+      name: common_proxy
 
 services:
-    hotrotaichinh_app:
-        container_name: hotrotaichinh_app
-        build:
-            context: ./
-            dockerfile: app.dockerfile
-        command: bash -c "yarn start"
-        working_dir: /docker-containers
-        ports:
-            - "3000:3000"
-        volumes:
-            - .:/docker-containers:cached
-            - /docker-containers/node_modules
-        networks:
-            - proxy
+  hotrotaichinh_app:
+    container_name: hotrotaichinh_app
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    command: bash -c "yarn start"
+    working_dir: /docker-containers
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/docker-containers:cached
+      - /docker-containers/node_modules
+    networks:
+      - proxy
