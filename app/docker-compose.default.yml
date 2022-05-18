@@ -15,7 +15,7 @@ services:
         command: bash -c "yarn start"
         working_dir: /docker-containers
         ports:
-            - "4004:4004"
+            - "3000:3000"
         volumes:
             - .:/docker-containers:cached
             - /docker-containers/node_modules
