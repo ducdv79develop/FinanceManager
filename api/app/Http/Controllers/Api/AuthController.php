@@ -21,7 +21,7 @@ class AuthController extends Controller
      */
     public function signup(Request $request)
     {
-       /* $request->validate([
+        $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed'
@@ -31,7 +31,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-        $user->save();*/
+        $user->save();
         return response()->json([
             'data' => User::all()->toArray()
         ], 201);

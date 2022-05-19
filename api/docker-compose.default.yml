@@ -9,11 +9,14 @@ networks:
 services:
   hotrotaichinh_db:
     container_name: hotrotaichinh_db
+    command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     image: mysql:8
     environment:
-      - MYSQL_ROOT_PASSWORD=ducdv@79
+      - MYSQL_ROOT_PASSWORD=rootducdv@79
       - MYSQL_DATABASE=hotrotaichinh
+      - MYSQL_USER=ducdv79
+      - MYSQL_PASSWORD=ducdv@79
       - SERVICE_NAME=mysql
       - SERVICE_TAGS=dev
     ports:
