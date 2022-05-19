@@ -10,17 +10,20 @@ services:
   hotrotaichinh_db:
     container_name: hotrotaichinh_db
     command: --default-authentication-plugin=mysql_native_password
-    restart: always
+    restart: unless-stopped
     image: mysql:8
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_PASSWORD=ducdv@79
       - MYSQL_USER=ducdv79
       - MYSQL_DATABASE=hotrotaichinh
+      - SERVICE_NAME=mysql
+      - SERVICE_TAGS=dev
     ports:
       - 3306:3306
     volumes:
-      - ~/docker-containers/hotrotaichinh/mysql:/var/lib/mysql
+      - dbdata:/var/lib/mysql
+      - ./mysql/sql.cnf:/etc/mysql/my.cnf
     networks:
       - proxy
 
@@ -29,9 +32,12 @@ services:
     build:
       context: ./
       dockerfile: api.dockerfile
-    working_dir: /docker-containers
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
     volumes:
-      - .:/docker-containers:cached
+      - ./:/var/www
+      - ./php/php.ini:/usr/local/etc/php/conf.d/local.ini
     environment:
       - DB_CONNECTION=mysql
       - DB_PORT=3306
@@ -39,5 +45,7 @@ services:
       - DB_DATABASE=hotrotaichinh
       - DB_USERNAME=ducdv79
       - DB_PASSWORD=ducdv@79
+      - SERVICE_NAME=api
+      - SERVICE_TAGS=dev
     networks:
       - proxy
