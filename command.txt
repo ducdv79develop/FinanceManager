@@ -1,7 +1,21 @@
-# create network
-docker network create hotrotaichinh
+#step1: create network
+    docker network create hotrotaichinh
 
-# di chuyen vao trong container
-docker exec -it hotrotaichinh_api sh
+#step2: copy .env and docker-compose.yml
+    copy api/.env.example api/.env
+    copy api/docker-compose.default.yml api/docker-compose.yml
+    copy app/docker-compose.default.yml app/docker-compose.yml
+
+#step3: build container
+    docker-compose -f api/docker-compose.yml up -d
+    docker-compose -f app/docker-compose.yml up -d
+    docker-compose -f ../nginx/docker-compose.yml up -d
+
+#step4: setup API
+    docker exec -it hotrotaichinh_api sh
+    composer install
+    php artisan key:generate
+    php artisan migrate
+    php artisan passport:install
 
 
