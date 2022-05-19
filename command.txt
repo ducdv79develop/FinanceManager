@@ -1,3 +1,6 @@
+# create network
+docker network create hotrotaichinh
+
 # di chuyen vao trong container
 docker exec -it hotrotaichinh_api sh
 

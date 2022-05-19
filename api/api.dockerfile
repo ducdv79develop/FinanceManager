@@ -1,11 +1,11 @@
 # api.dockerfile
-FROM php:7.2-fpm-alpine
+FROM php:7.2-fpm
 
 # Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/html/
+COPY composer.lock composer.json /app/
 
 # Set working directory
-WORKDIR /var/www/html
+WORKDIR /app
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \

@@ -3,7 +3,7 @@ version: '2.1'
 
 networks:
   app-network:
-    name: common_proxy
+    name: hotrotaichinh
     driver: bridge
 
 services:
@@ -31,9 +31,9 @@ services:
       dockerfile: api.dockerfile
     restart: unless-stopped
     tty: true
-    working_dir: /var/www
+    working_dir: /app
     volumes:
-      - ./:/var/www
+      - .:/app
       - ./php/php.ini:/usr/local/etc/php/conf.d/local.ini
     environment:
       - DB_CONNECTION=mysql

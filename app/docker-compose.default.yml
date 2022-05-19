@@ -3,7 +3,7 @@ version: '2.1'
 
 networks:
   app-network:
-    name: common_proxy
+    name: hotrotaichinh
     driver: bridge
 
 services:
@@ -12,12 +12,11 @@ services:
     build:
       context: ./
       dockerfile: app.dockerfile
-    command: bash -c "yarn start"
-    working_dir: /var/www/html
+    working_dir: /app
     ports:
       - "3000:3000"
     volumes:
-      - .:/var/www/html:cached
-      - /var/www/html/node_modules
+      - /app/node_modules
+      - .:/app
     networks:
       - app-network
