@@ -1,31 +1,28 @@
 # docker-compose.yml
-version: '1'
+version: '2.1'
 
 networks:
-  proxy:
-    external:
-      name: common_proxy
+  app-network:
+    name: common_proxy
+    driver: bridge
 
 services:
   hotrotaichinh_db:
     container_name: hotrotaichinh_db
-    command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     image: mysql:8
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_PASSWORD=ducdv@79
-      - MYSQL_USER=ducdv79
+      - MYSQL_ROOT_PASSWORD=ducdv@79
       - MYSQL_DATABASE=hotrotaichinh
       - SERVICE_NAME=mysql
       - SERVICE_TAGS=dev
     ports:
       - 3306:3306
     volumes:
-      - dbdata:/var/lib/mysql
-      - ./mysql/sql.cnf:/etc/mysql/my.cnf
+      - dbdata:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
-      - proxy
+      - app-network
 
   hotrotaichinh_api:
     container_name: hotrotaichinh_api
@@ -43,9 +40,11 @@ services:
       - DB_PORT=3306
       - DB_HOST=hotrotaichinh_db
       - DB_DATABASE=hotrotaichinh
-      - DB_USERNAME=ducdv79
+      - DB_USERNAME=root
       - DB_PASSWORD=ducdv@79
-      - SERVICE_NAME=api
-      - SERVICE_TAGS=dev
     networks:
-      - proxy
+      - app-network
+
+volumes:
+  dbdata:
+    driver: local

@@ -1,17 +1,17 @@
 # app.dockerfile
 # build react app
 
-FROM node:18.1 AS development
+FROM node:18.1-alpine AS development
 
 # Set working directory
-WORKDIR /docker-containers
+WORKDIR /var/www/html
 
-COPY package.json /docker-containers/package.json
-COPY package-lock.json /docker-containers/package-lock.json
+COPY package.json /var/www/html/package.json
+COPY package-lock.json /var/www/html/package-lock.json
 
 # Same as npm install
 RUN npm ci
-COPY . /docker-containers
+COPY . /var/www/html
 
 ENV CI=true
 ENV PORT=3000

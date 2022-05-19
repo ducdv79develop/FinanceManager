@@ -1,10 +1,10 @@
 # docker-compose.default.yml
-version: '1'
+version: '2.1'
 
 networks:
-  proxy:
-    external:
-      name: common_proxy
+  app-network:
+    name: common_proxy
+    driver: bridge
 
 services:
   hotrotaichinh_app:
@@ -13,11 +13,11 @@ services:
       context: ./
       dockerfile: app.dockerfile
     command: bash -c "yarn start"
-    working_dir: /docker-containers
+    working_dir: /var/www/html
     ports:
       - "3000:3000"
     volumes:
-      - .:/docker-containers:cached
-      - /docker-containers/node_modules
+      - .:/var/www/html:cached
+      - /var/www/html/node_modules
     networks:
-      - proxy
+      - app-network

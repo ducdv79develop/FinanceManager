@@ -1,11 +1,11 @@
 # api.dockerfile
-FROM php:7.2.5-fpm
+FROM php:7.2-fpm-alpine
 
 # Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/
+COPY composer.lock composer.json /var/www/html/
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/html
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -33,11 +33,7 @@ RUN docker-php-ext-install gd
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Copy existing application directory contents
-COPY . /var/www
-# Copy existing application directory permissions
-COPY --chown=www:www . /var/www
-# Change current user to www
-USER www
+COPY . /var/www/html
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
