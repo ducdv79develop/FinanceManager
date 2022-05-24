@@ -1,5 +1,5 @@
 # docker-compose.yml
-version: '2.1'
+version: '2.2'
 
 networks:
   app-network:
@@ -9,7 +9,9 @@ networks:
 services:
   hotrotaichinh_db:
     container_name: hotrotaichinh_db
-    command: --default-authentication-plugin=mysql_native_password
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --secure-file-priv=""
     restart: unless-stopped
     image: mysql:8
     environment:
@@ -22,8 +24,8 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - dbdata:/var/lib/mysql/
       - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - dbdata:/var/lib/mysql
     networks:
       - app-network
 

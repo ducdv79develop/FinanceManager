@@ -7,9 +7,9 @@
     copy app/docker-compose.default.yml app/docker-compose.yml
 
 #step3: build container
-    docker-compose -f api/docker-compose.yml up -d
-    docker-compose -f app/docker-compose.yml up -d
-    docker-compose -f ../nginx/docker-compose.yml up -d
+    docker-compose -f api/docker-compose.yml up -d --build
+    docker-compose -f app/docker-compose.yml up -d --build
+    docker-compose -f ../nginx/docker-compose.yml up -d --build
 
 #step4: setup API
     docker exec -it hotrotaichinh_api sh
@@ -17,5 +17,12 @@
     php artisan key:generate
     php artisan migrate
     php artisan passport:install
+
+
+
+*note: command used
+    remove cache:
+        docker system prune
+        docker system prune -a -f
 
 
