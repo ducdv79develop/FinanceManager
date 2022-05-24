@@ -37,7 +37,7 @@ const _nav = [
     items: [
       {
         component: CNavItem,
-        name: 'Accordion',
+        name: 'ahihi',
         to: '/base/accordion',
       },
       {

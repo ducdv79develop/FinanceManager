@@ -1,12 +1,17 @@
 # app.dockerfile
-FROM node:18-alpine
+FROM node:18-alpine as build
 
+RUN mkdir -p /app/
 WORKDIR /app
-COPY package*.json ./
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json ./
+COPY package-lock.json ./
 
-RUN npm install
+RUN npm ci --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
-COPY . .
+COPY . ./
+RUN npm run build
 
 EXPOSE 3000
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "start" ]
