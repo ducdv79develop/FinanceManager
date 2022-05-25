@@ -12,11 +12,14 @@ services:
     build:
       context: ./
       dockerfile: app.dockerfile
-    working_dir: /frontend
+    working_dir: /app
     ports:
       - "3000:3000"
     volumes:
-      - ./:/frontend
-      - /frontend/node_modules
+      - hotrotaichinh_app:/app
     networks:
       - app-network
+
+volumes:
+  hotrotaichinh_app:
+    driver: local

@@ -25,7 +25,7 @@ services:
       - 3306:3306
     volumes:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
-      - dbdata:/var/lib/mysql
+      - hotrotaichinh_db:/var/lib/mysql
     networks:
       - app-network
 
@@ -53,5 +53,5 @@ services:
       - app-network
 
 volumes:
-  dbdata:
+  hotrotaichinh_db:
     driver: local
