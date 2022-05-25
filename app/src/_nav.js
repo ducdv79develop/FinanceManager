@@ -11,39 +11,42 @@ import {
   cilPuzzle,
   cilSpeedometer,
   cilStar,
+  cilUser,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
+
+const Admin = '/admin';
 
 const _nav = [
   {
     component: CNavItem,
-    name: 'Dashboard',
-    to: '/dashboard',
+    name: 'Trang chủ',
+    to: Admin + '/dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    badge: {
+    /*badge: {
       color: 'info',
       text: 'NEW',
-    },
+    },*/
   },
   {
     component: CNavTitle,
-    name: 'Components',
+    name: 'Tài chính',
   },
   {
     component: CNavGroup,
-    name: 'Base',
-    to: '/base',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+    name: 'Khách hàng',
+    to: Admin + '/borrower',
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'ahihi',
-        to: '/base/accordion',
+        name: 'Danh sách',
+        to: Admin + '/borrower',
       },
       {
         component: CNavItem,
-        name: 'Breadcrumb',
-        to: '/base/breadcrumbs',
+        name: 'Thêm khách hàng mới',
+        to: Admin + '/borrower/create',
       },
     ],
   },

@@ -9,7 +9,9 @@ const loading = (
 )
 
 // Containers
-const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
+const IndexLayout = React.lazy(() => import('./layout/IndexLayout'))
+const AdminLayout = React.lazy(() => import('./layout/AdminLayout'))
+const Login = React.lazy(() => import('./views/auth/Login'))
 
 // Pages
 
@@ -19,7 +21,9 @@ class App extends Component {
       <HashRouter>
         <Suspense fallback={loading}>
           <Routes>
-            <Route path="*" name="Home" element={<DefaultLayout />} />
+            <Route path="/" name="Index" element={<IndexLayout />} />
+            <Route path="/login" name="Login" element={<Login />} />
+            <Route path="/admin/*" name="Admin" element={<AdminLayout />} />
           </Routes>
         </Suspense>
       </HashRouter>
