@@ -40,6 +40,8 @@ services:
     volumes:
       - .:/app
       - ./php/php.ini:/usr/local/etc/php/conf.d/local.ini
+    depends_on:
+      - hotrotaichinh_db
     environment:
       - DB_CONNECTION=mysql
       - DB_PORT=3306
