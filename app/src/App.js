@@ -25,9 +25,9 @@ class App extends Component {
         <HashRouter>
             <Suspense fallback={loading}>
                 <Routes>
-                    <Route exact="/" name="Index" element={<Index />} />
-                    <Route exact path="admin/login" name="Admin Login" element={<Login />} />
-                    <Route exact path="admin/*" name="Admin Manager" element={<AdminLayout />} />
+                    <Route path="/" name="Index" element={<Index />} />
+                    <Route exact path="/admin/login" name="Admin Login" element={<Login />} />
+                    <Route exact path="/admin/*" name="Admin Manager" element={<AdminLayout />} />
                     <Route exact path="/404" name="Page 404" element={<Page404 />} />
                     <Route exact path="/500" name="Page 500" element={<Page500 />} />
                 </Routes>
