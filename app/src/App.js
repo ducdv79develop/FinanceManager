@@ -9,11 +9,13 @@ const loading = (
 )
 
 // Containers
-const IndexLayout = React.lazy(() => import('./layout/IndexLayout'))
-const AdminLayout = React.lazy(() => import('./layout/AdminLayout'))
-const Login = React.lazy(() => import('./views/auth/Login'))
+const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 
 // Pages
+const Login = React.lazy(() => import('./views/pages/login/Login'))
+const Register = React.lazy(() => import('./views/pages/register/Register'))
+const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
+const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 
 class App extends Component {
   render() {
@@ -21,9 +23,11 @@ class App extends Component {
       <HashRouter>
         <Suspense fallback={loading}>
           <Routes>
-            <Route path="/" name="Index" element={<IndexLayout />} />
-            <Route path="/login" name="Login" element={<Login />} />
-            <Route path="/admin/*" name="Admin" element={<AdminLayout />} />
+            <Route exact path="/login" name="Login Page" element={<Login />} />
+            <Route exact path="/register" name="Register Page" element={<Register />} />
+            <Route exact path="/404" name="Page 404" element={<Page404 />} />
+            <Route exact path="/500" name="Page 500" element={<Page500 />} />
+            <Route path="*" name="Home" element={<DefaultLayout />} />
           </Routes>
         </Suspense>
       </HashRouter>
