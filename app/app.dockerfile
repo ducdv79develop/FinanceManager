@@ -3,10 +3,9 @@ FROM node:18-alpine
 
 RUN mkdir -p /app/
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-COPY package*.json /app/package*.json
+COPY package*.json /app
 
-COPY . ./
+COPY . /app
 RUN npm install
 #RUN npm run build
 
