@@ -47,7 +47,7 @@ services:
       - DB_PORT=3306
       - DB_HOST=hotrotaichinh_db
       - DB_DATABASE=hotrotaichinh
-      - DB_USERNAME=root
+      - DB_USERNAME=ducdv79
       - DB_PASSWORD=ducdv@79
     networks:
       - app-network
