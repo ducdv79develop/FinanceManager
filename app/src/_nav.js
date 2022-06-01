@@ -2,7 +2,7 @@ import React from 'react';
 import CIcon from '@coreui/icons-react';
 import {
     cilUser,
-    cilMoney, cilSpeedometer,
+    cilMoney, cilSpeedometer, cilAccountLogout,
 } from '@coreui/icons';
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react';
 
@@ -55,6 +55,16 @@ const _nav = [
                 to: PREFIX_ADMIN + '/transaction/create',
             },
         ],
+    },
+    {
+        component: CNavTitle,
+        name: 'Trang cá nhân',
+    },
+    {
+        component: CNavItem,
+        name: 'Đăng xuất',
+        to: PREFIX_ADMIN + '/logout',
+        icon: <CIcon icon={cilAccountLogout} customClassName="nav-icon" />,
     },
 ]
 

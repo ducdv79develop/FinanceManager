@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // Prefix admin
 const PREFIX_ADMIN = '/admin'
@@ -13,6 +13,9 @@ const BorrowerCreate = React.lazy(() => import('./views/borrower/BorrowerCreate'
 const Transaction = React.lazy(() => import('./views/transaction/Transaction'))
 const TransactionCreate = React.lazy(() => import('./views/transaction/TransactionCreate'))
 
+// Logout
+const Logout = React.lazy(() => import('./views/auth/Logout'))
+
 const routes = [
     { path: PREFIX_ADMIN, exact: true, name: 'Dashboard' },
     { path: PREFIX_ADMIN + '/dashboard', name: 'Dashboard', element: Dashboard },
@@ -22,6 +25,8 @@ const routes = [
 
     { path: PREFIX_ADMIN + '/transaction', name: 'Transaction', element: Transaction},
     { path: PREFIX_ADMIN + '/transaction/create', name: 'TransactionCreate', element: TransactionCreate},
+
+    { path: PREFIX_ADMIN + '/logout', name: 'Logout', element: Logout},
 ]
 
 export default routes

@@ -1,5 +1,5 @@
 import React from 'react';
-import apiAuth from './../../api/Auth';
+import apiAuth from './../../apis/Auth';
 import { withCookies, Cookies } from 'react-cookie';
 import {
   CButton,
