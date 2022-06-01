@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import apiAuth from './../../api/Auth';
 import { withCookies, Cookies } from 'react-cookie';
 import {
   CButton,
@@ -12,7 +12,7 @@ import {
   CFormInput,
   CInputGroup,
   CInputGroupText,
-  CRow,
+  CRow, CSpinner,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { cilLockLocked, cilUser } from '@coreui/icons';
@@ -28,10 +28,10 @@ class LoginForm extends React.Component implements withCookies {
 
   constructor(props) {
     super(props);
-    const { cookies } = props;
     this.state = {
       username: '',
       password: '',
+      disabled_submit: false,
     };
 
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
@@ -50,25 +50,30 @@ class LoginForm extends React.Component implements withCookies {
 
   handleSubmit(event) {
     const { cookies } = this.props;
-
+    this.setState({disabled_submit: true});
     let param = {
       email: this.state.username,
       password: this.state.password
     }
-    console.log(process.env.REACT_APP_API_AUTH + 'login');
+    apiAuth.post('login', param)
+        .then(response => {
+          const token = response.data;
+          if (token.access_token) {
+            cookies.set("site_token", {
+              access_token: token.access_token,
+              expires_at: token.expires_at,
+              token_type: token.token_type,
+            }, { path: "/" });
 
-    axios.post(process.env.REACT_APP_API_AUTH + 'login', { param })
-        .then(res => {
-          const persons = res.data;
-          console.log(persons)
+            this.setState({disabled_submit: false});
+
+            window.location.href = redirectToDashBoard;
+          }
         })
         .catch(error => {
-          console.log(error)
           const response = error.response
+          this.setState({disabled_submit: false});
         });
-
-
-    //window.location.href = redirectToDashBoard;
   }
 
   render() {
@@ -105,8 +110,10 @@ class LoginForm extends React.Component implements withCookies {
                       </CInputGroup>
                       <CRow>
                         <CCol xs={6}>
-                          <CButton type="button" onClick={this.handleSubmit} color="primary" className="px-4">
-                            Login
+                          <CButton type="button" onClick={this.handleSubmit} disabled={this.state.disabled_submit}
+                            color="primary" className="px-4">
+                            <CSpinner size="sm" color="light"/>
+                            &nbsp;Login
                           </CButton>
                         </CCol>
                         <CCol xs={6} className="text-right">

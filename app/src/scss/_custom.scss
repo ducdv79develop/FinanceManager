@@ -1,1 +1,54 @@
 // Here you can add other styles
+.cursor-pointer {
+  cursor: pointer;
+}
+.sidebar-logo {
+  display: flex;
+}
+.sidebar-logo-img {
+  border: 3px solid #3c4b64;
+  border-radius: 50%;
+  width: 50px;
+  height: 35px;
+  padding-left: 3px;
+  padding-top: 0.5px;
+  margin-right: 10px;
+}
+.sidebar-logo-img-narrow img ,
+.sidebar-logo-img img {
+  max-height: 28px;
+}
+.sidebar-logo-span {
+  padding-top: 2px;
+  font-size: 20px;
+}
+.sidebar-logo-img-narrow {
+  border: 3px solid #3c4b64;
+  border-radius: 50%;
+  width: 50px;
+  height: 35px;
+  padding-left: 3px;
+  padding-top: 0.5px;
+}
+@media screen and (max-width: 768px) {
+  .sidebar-logo {
+    width: 100%;
+  }
+  .sidebar-logo-img {
+    border: 3px solid #bcbebf;
+    border-radius: 50%;
+    width: 69px;
+    height: 48px;
+    padding-left: 13px;
+    padding-top: 2px;
+    margin-right: 10px;
+  }
+  .sidebar-logo-img img {
+    max-height: 38px;
+  }
+  .sidebar-logo-span {
+    padding-top: 8px;
+    font-size: 22px;
+    padding-right: 10px;
+  }
+}
