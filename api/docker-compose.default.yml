@@ -3,7 +3,7 @@ version: '2.2'
 
 networks:
   app-network:
-    name: hotrotaichinh
+    name: docker-network
     driver: bridge
 
 services:
