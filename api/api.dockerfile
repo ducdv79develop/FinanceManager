@@ -2,7 +2,7 @@
 FROM php:7.2-fpm
 
 # Copy composer.lock and composer.json
-COPY composer.lock composer.json /app/
+COPY composer.* /app/
 
 # Set working directory
 WORKDIR /app
