@@ -3,6 +3,7 @@
 
 #step2: copy .env and docker-compose.yml
     copy api/.env.example api/.env
+    copy app/.env.example app/.env
     copy api/docker-compose.default.yml api/docker-compose.yml
     copy app/docker-compose.default.yml app/docker-compose.yml
 
