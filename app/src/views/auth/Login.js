@@ -46,10 +46,7 @@ class LoginForm extends React.Component {
   checkAccess() {
       const { cookies } = this.props;
       let site_token = cookies.get('site_token');
-      if (site_token.access_token) {
-          return true;
-      }
-      return false;
+      return !!(site_token && site_token.access_token);
   }
 
   handleChangeUsername(event) {

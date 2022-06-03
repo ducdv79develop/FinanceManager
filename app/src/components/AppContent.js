@@ -4,6 +4,7 @@ import { CContainer, CSpinner } from '@coreui/react'
 
 // routes config
 import routes from '../routes'
+import Logout from "../views/auth/Logout";
 
 const AppContent = () => {
   return (
@@ -24,6 +25,7 @@ const AppContent = () => {
             )
           })}
           <Route path="/" element={<Navigate to="dashboard" replace />} />
+          <Route path="/logout" name="Admin Logout" element={<Logout />}/>
         </Routes>
       </Suspense>
     </CContainer>

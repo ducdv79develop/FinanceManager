@@ -1,9 +1,9 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom'
+import React from 'react';
+import {NavLink, useLocation} from 'react-router-dom';
 
-import routes_demo from '../routes'
+import routes from '../routes';
 
-import { CBreadcrumb, CBreadcrumbItem } from '@coreui/react'
+import {CBreadcrumb} from '@coreui/react';
 
 const AppBreadcrumb = () => {
   const currentLocation = useLocation().pathname
@@ -17,7 +17,7 @@ const AppBreadcrumb = () => {
     const breadcrumbs = []
     location.split('/').reduce((prev, curr, index, array) => {
       const currentPathname = `${prev}/${curr}`
-      const routeName = getRouteName(currentPathname, routes_demo)
+      const routeName = getRouteName(currentPathname, routes)
       routeName &&
         breadcrumbs.push({
           pathname: currentPathname,
@@ -33,15 +33,14 @@ const AppBreadcrumb = () => {
 
   return (
     <CBreadcrumb className="m-0 ms-2">
-      <CBreadcrumbItem href="/">Home</CBreadcrumbItem>
+      <li className="breadcrumb-item active">
+        <NavLink to="/admin">Trang chủ</NavLink>
+      </li>
       {breadcrumbs.map((breadcrumb, index) => {
         return (
-          <CBreadcrumbItem
-            {...(breadcrumb.active ? { active: true } : { href: breadcrumb.pathname })}
-            key={index}
-          >
-            {breadcrumb.name}
-          </CBreadcrumbItem>
+            <li className="breadcrumb-item" key={index}>
+              {!breadcrumb.active ? <NavLink to={breadcrumb.pathname}>{breadcrumb.name}</NavLink> : <span>{breadcrumb.name}</span>}
+            </li>
         )
       })}
     </CBreadcrumb>

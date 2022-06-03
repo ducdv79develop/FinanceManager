@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import {
   CCard,
   CCardBody,
@@ -9,7 +8,7 @@ import {
   CRow,
 } from '@coreui/react'
 
-const Login = () => {
+const Index = () => {
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -29,4 +28,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Index

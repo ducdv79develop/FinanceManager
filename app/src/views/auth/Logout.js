@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { withCookies, Cookies } from 'react-cookie';
 import { Navigate } from "react-router-dom";
 import apiAuth from "../../apis/Auth";
+import { CProgress, CProgressBar } from "@coreui/react";
+import { ImageLogout } from "../../assets/brand/ImageLogout";
 
 const redirectToLogin = '/admin/login';
 
@@ -18,7 +20,24 @@ class Logout extends Component {
         super(props);
         this.state = {
             redirect: false,
+            progress: 1,
         };
+        this.setProgress();
+        this.logout().then(r => console.log(r));
+    }
+    setProgress() {
+        let i = 1;
+        let masterClass = this;
+        function myLoop() {
+            setTimeout(function () {
+                masterClass.setState({progress: i});
+                i = i + 10;
+                if (i <= 91) {
+                    myLoop();
+                }
+            }, 300);
+        }
+        myLoop();
     }
 
     async logout() {
@@ -31,24 +50,30 @@ class Logout extends Component {
         }
         await apiAuth.get('logout', config)
             .then(response => {
-                console.log(response.data);
                 cookies.set("site_token", {}, {path: "/"});
-                this.setState({ redirect: true });
+                this.setState({
+                    redirect: true,
+                    progress: 100
+                });
             })
             .catch(error => {
                 const response = error.response;
-                console.log(response);
             });
-
     }
 
     render() {
-        this.logout().then(r => true);
         if (this.state.redirect) {
             return (<Navigate replace={ true } to={ redirectToLogin } />);
         }
 
-        return null;
+        return (
+          <div>
+            <CProgress className="mb-3 mt-5">
+              <CProgressBar color="success" variant="striped" value={ this.state.progress }/>
+            </CProgress>
+            <ImageLogout/>
+          </div>
+        );
     }
 }
 

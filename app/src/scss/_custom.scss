@@ -30,6 +30,13 @@
   padding-left: 3px;
   padding-top: 0.5px;
 }
+.image-logout--div {
+  padding-top: 30px;
+  text-align: center;
+}
+.image-logout--div img {
+  max-width: 300px;
+}
 @media screen and (max-width: 768px) {
   .sidebar-logo {
     width: 100%;

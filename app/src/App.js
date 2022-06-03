@@ -1,10 +1,7 @@
 import React, {Component, Suspense} from 'react';
 import {
-    HashRouter,
-    BrowserRouter,
-    Switch,
     Route,
-    Routes, Router,
+    Routes,
 } from 'react-router-dom';
 import './scss/style.scss';
 import {RequireAuth} from './middleware/AdminAuth';
@@ -28,9 +25,6 @@ const Login = React.lazy(() => import('./views/auth/Login'))
 const Page404 = React.lazy(() => import('./views/page/Page404'))
 const Page500 = React.lazy(() => import('./views/page/Page500'))
 
-// Logout
-const Logout = React.lazy(() => import('./views/auth/Logout'))
-
 class App extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
@@ -44,12 +38,7 @@ class App extends Component {
                     <Route exact path="/server-error" name="Page 500" element={<Page500/>}/>
                     <Route path="*" name="Page 404" element={<Page404/>}/>
                     <Route exact path="/admin/login" name="Admin Login" element={<Login/>}/>
-                    <Route exact path="/admin/logout" name="Admin Logout" element={<Logout/>}/>
-                    <Route path="/admin/*" element={
-                        <RequireAuth>
-                            <AdminLayout/>
-                        </RequireAuth>
-                    }/>
+                    <Route path="/admin/*" element={<RequireAuth> <AdminLayout/> </RequireAuth>}/>
                 </Routes>
             </Suspense>
         )

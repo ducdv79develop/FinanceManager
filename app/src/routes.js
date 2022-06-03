@@ -16,7 +16,6 @@ const TransactionCreate = React.lazy(() => import('./views/transaction/Transacti
 
 
 const routes = [
-    { path: PREFIX_ADMIN, exact: true, name: 'Dashboard' },
     { path: PREFIX_ADMIN + '/dashboard', exact: true, name: 'Dashboard', element: Dashboard },
 
     { path: PREFIX_ADMIN + '/borrower', exact: true, name: 'Borrower', element: Borrower},
