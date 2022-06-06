@@ -33,7 +33,7 @@ RUN docker-php-ext-install gd
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Copy existing application directory contents
-COPY . /var/www/html
+COPY . /app
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
