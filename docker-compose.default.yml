@@ -75,4 +75,4 @@ volumes:
     driver: local
 
   hotrotaichinh_app:
-      driver: local
+    driver: local
