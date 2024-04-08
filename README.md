@@ -1,8 +1,7 @@
-# Project Ho Tro Tai Chinh
+# Project Finance Manager
 
 #### Developer
 - ducdv79
-- ducdv7920
 - ducdv79develop
 
 
